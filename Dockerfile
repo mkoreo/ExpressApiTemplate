@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Prisma schema needed earlier (generation during npm ci)
-COPY prisma ./prisma/       
+# COPY prisma ./prisma/       
 
 # CI and release builds should use npm ci to fully respect the lockfile.
 RUN npm ci
@@ -28,7 +28,7 @@ ENV NODE_ENV production
 RUN npm prune --production
 
 # New Build for archive
-FROM node:14.15.5-alpine3.10 as archive-target
+FROM node:14.15.5-alpine3.10 as image-target
 ARG TAG
 ENV NODE_ENV=production
 ENV PATH $PATH:/usr/src/app/node_modules/.bin
@@ -38,7 +38,6 @@ WORKDIR /usr/src/app
 # Include only the release build and production packages and static files.
 COPY --from=build-target /usr/src/app/node_modules node_modules
 COPY --from=build-target /usr/src/app/ .
-RUN ls -l
 ENV VERSION ${TAG} 
 EXPOSE 4001
-CMD ["node", "--experimental-specifier-resolution=node", "src/server.js"]
+CMD ["node", "--loader ts-node/esm", "--experimental-specifier-resolution=node", "src/server.js"]

@@ -10,6 +10,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
+// Use express async errors if express < 5
+// import 'express-async-errors';
+
 // Handlers
 import { httpErrorHandler } from './lib/errorHandler.js';
 
