@@ -1,0 +1,10 @@
+.*
+*.log
+*.swp
+Dockerfile*
+docker-compose*
+node_modules
+README.md
+LICENSE
+/scripts
+/kubernetes

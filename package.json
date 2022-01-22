@@ -1,0 +1,51 @@
+{
+  "name": "express-server",
+  "version": "0.0.0",
+  "description": "API server",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --loader ts-node/esm --experimental-specifier-resolution=node src/server.js",
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'node --experimental-specifier-resolution=node --loader ts-node/esm' src/server.ts"
+  },
+  "author": "THOPOP",
+  "imports": {
+    "#root/*": "./*",
+    "#src/*": "./src/*"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^14.2.0",
+    "express": "^5.0.0-alpha.8",
+    "express-async-errors": "^3.1.1",
+    "express-list-endpoints": "^6.0.0",
+    "fs": "^0.0.1-security",
+    "helmet": "^5.0.1",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "zod": "^3.11.6"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.7.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/http-errors": "^1.8.2",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^17.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
+  }
+}

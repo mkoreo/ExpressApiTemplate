@@ -1,0 +1,45 @@
+version: '3.4'
+
+services:
+  auth-server:
+    build:
+      context: .
+      target: test-target
+      args:
+        npm_install_command: install
+    volumes:
+      # This bind mount allows changes on the host file system to affect the container.
+      # Saving a code file can cause an incremental build, a hot reload in the browser,
+      # and a reconnection of the debugger.
+      # The mount is in delegated mode:
+      # Changes on the host, like saving a code file, immediately affect the container.
+      # Changes within the container, like build output, make their way back to the host,
+      # but are not strictly synchronized.
+      - .:/usr/src/app:delegated
+    ports:
+      - 0.0.0.0:4001:4001
+      #- 5555:5555
+    env_file:
+    - .env
+    command: nodemon --experimental-specifier-resolution=node
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:11.2-alpine
+    restart: always
+    ports:
+      - 0.0.0.0:5432:5432
+    env_file:
+      - .env
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+    name: nest-db
+
+networks:
+  default: 
+    external: 
+      name: localnetwork
