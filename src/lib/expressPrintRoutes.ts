@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { Application } from 'express';
+import { Express } from 'express';
 import listEndpoints from 'express-list-endpoints';
 
 interface endpoint {
@@ -40,8 +40,8 @@ function colorMethod(method: string) {
     }
 }
 
-export const printRoutes = (app: Application) => {
-    const appEndpoints = listEndpoints(app.router) as endpoints;
+export const printRoutes = (app: Express) => {
+    const appEndpoints = listEndpoints(app) as endpoints;
 
     appEndpoints.forEach((appEndpoint) => {
         appEndpoint.methods.forEach((method) => {

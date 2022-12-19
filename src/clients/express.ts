@@ -1,11 +1,11 @@
 // Web Application framework
-import express, { Application } from 'express';
+import express, { Express } from 'express';
 
 // Enable use of environment variables
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv-defaults';
 
 // Enable .env variables, must be called ASAP.
 dotenv.config();
 
 // Start Express & export instance
-export const app : Application = express();
+export const app : Express = express();

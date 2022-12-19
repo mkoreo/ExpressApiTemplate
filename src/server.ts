@@ -61,11 +61,12 @@ app.use('/api', apiVersionRouter);
 // Error handler (after all routes!)
 app.use(httpErrorHandler);
 
-app.listen(process.env?.SERVER_PORT, () => {
+app.listen(process.env.SERVER_PORT, () => {
     console.log('-------------------------------------');
     console.log(process.env?.SERVER_NAME, ' - Version', process.env?.SERVER_VERSION);
     console.log('-------------------------------------\n');
     printRoutes(app);
     console.log('\n------------- READY ! ---------------');
 });
+
 // ------------------------------------- SERVER END -------------------------------------------
